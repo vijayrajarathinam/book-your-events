@@ -1,0 +1,17 @@
+export const locations = [
+  "New York",
+  "Los Angeles",
+  "Chicago",
+  "Houston",
+  "Phoenix",
+  "Philadelphia",
+  "San Antonio",
+  "San Diego",
+  "Dallas",
+  "San Francisco",
+  "Austin",
+  "Seattle",
+  "Denver",
+  "Boston",
+  "Miami",
+]

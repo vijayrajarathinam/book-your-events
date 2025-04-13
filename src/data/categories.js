@@ -1,0 +1,17 @@
+export const categories = [
+  "Music",
+  "Food & Drink",
+  "Arts",
+  "Business",
+  "Sports & Fitness",
+  "Health",
+  "Technology",
+  "Education",
+  "Family",
+  "Film & Media",
+  "Community",
+  "Fashion",
+  "Charity & Causes",
+  "Travel & Outdoor",
+  "Science",
+]
