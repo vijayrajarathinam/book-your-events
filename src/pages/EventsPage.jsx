@@ -19,7 +19,7 @@ import { useEventsContext } from "../context/events-context";
 
 function EventsContent() {
   const { events, loading, error, fetchEvents } = useEventsContext();
-  const [viewMode, setViewMode] = (useState < "grid") | ("list" > "grid");
+  const [viewMode, setViewMode] = useState("list"); // ("list" , "grid");
   const [searchParams] = useSearchParams();
   const location = searchParams.get("location") || "all";
   const category = searchParams.get("category") || "all";
@@ -40,7 +40,7 @@ function EventsContent() {
 
       <EventsFilter />
 
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col justify-between items-center">
         <h2 className="text-xl font-semibold">
           {location === "all" ? "All Events" : `Events in ${location}`}
         </h2>

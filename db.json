@@ -1,0 +1,124 @@
+{
+  "events": [
+    {
+      "id": "1",
+      "title": "Summer Music Festival",
+      "description": "Join us for a weekend of amazing music performances from top artists across multiple genres. Food vendors, art installations, and more!",
+      "date": "2025-07-15T18:00:00.000Z",
+      "duration": "3 days",
+      "location": "New York",
+      "address": "Central Park, New York, NY",
+      "organizer": "NYC Events Co.",
+      "categories": ["Music", "Arts", "Food & Drink"],
+      "image": "https://placehold.co/800x400"
+    },
+    {
+      "id": "2",
+      "title": "Tech Conference 2025",
+      "description": "The biggest tech conference of the year featuring keynotes from industry leaders, workshops, networking opportunities, and product showcases.",
+      "date": "2025-05-20T09:00:00.000Z",
+      "duration": "2 days",
+      "location": "San Francisco",
+      "address": "Moscone Center, San Francisco, CA",
+      "organizer": "TechEvents Global",
+      "categories": ["Technology", "Business", "Education"],
+      "image": "https://placehold.co/800x400"
+    },
+    {
+      "id": "3",
+      "title": "Food & Wine Festival",
+      "description": "Sample delicious cuisine from top chefs and taste premium wines from around the world. Cooking demonstrations, tastings, and more!",
+      "date": "2025-06-10T12:00:00.000Z",
+      "duration": "4 hours",
+      "location": "Chicago",
+      "address": "Millennium Park, Chicago, IL",
+      "organizer": "Taste of Chicago",
+      "categories": ["Food & Drink"],
+      "image": "https://placehold.co/800x400"
+    },
+    {
+      "id": "4",
+      "title": "Marathon for Charity",
+      "description": "Run for a cause! Join thousands of participants in this annual marathon to raise funds for local charities. All fitness levels welcome.",
+      "date": "2025-04-05T07:00:00.000Z",
+      "duration": "1 day",
+      "location": "Boston",
+      "address": "Boston Common, Boston, MA",
+      "organizer": "Boston Runners Association",
+      "categories": ["Sports & Fitness", "Charity & Causes"],
+      "image": "https://placehold.co/800x400"
+    },
+    {
+      "id": "5",
+      "title": "Art Exhibition Opening",
+      "description": "Be among the first to see this stunning collection of contemporary art from emerging artists. Meet the artists and enjoy complimentary refreshments.",
+      "date": "2025-08-12T19:00:00.000Z",
+      "duration": "3 hours",
+      "location": "Los Angeles",
+      "address": "LA Contemporary Art Museum, Los Angeles, CA",
+      "organizer": "LA Arts Council",
+      "categories": ["Arts", "Community"],
+      "image": "https://placehold.co/800x400"
+    },
+    {
+      "id": "6",
+      "title": "Business Networking Mixer",
+      "description": "Connect with professionals in your industry at this casual networking event. Perfect for making new contacts and exploring business opportunities.",
+      "date": "2025-05-15T18:30:00.000Z",
+      "duration": "2 hours",
+      "location": "New York",
+      "address": "The Grand Hotel, New York, NY",
+      "organizer": "NYC Business Network",
+      "categories": ["Business", "Community"],
+      "image": "https://placehold.co/800x400"
+    },
+    {
+      "id": "7",
+      "title": "Film Festival",
+      "description": "A celebration of independent cinema featuring screenings, director Q&As, and workshops. Discover the next generation of filmmaking talent!",
+      "date": "2025-09-20T10:00:00.000Z",
+      "duration": "5 days",
+      "location": "Austin",
+      "address": "Various Venues, Austin, TX",
+      "organizer": "Austin Film Society",
+      "categories": ["Film & Media", "Arts"],
+      "image": "https://placehold.co/800x400"
+    },
+    {
+      "id": "8",
+      "title": "Health & Wellness Expo",
+      "description": "Explore the latest in health, fitness, and wellness. Free health screenings, product samples, demonstrations, and expert talks.",
+      "date": "2025-06-25T09:00:00.000Z",
+      "duration": "2 days",
+      "location": "Miami",
+      "address": "Miami Convention Center, Miami, FL",
+      "organizer": "Wellness Today",
+      "categories": ["Health", "Sports & Fitness"],
+      "image": "https://placehold.co/800x400"
+    },
+    {
+      "id": "9",
+      "title": "Family Fun Day",
+      "description": "A day of activities for the whole family! Games, rides, entertainment, food, and more. Create memories that will last a lifetime.",
+      "date": "2025-07-04T11:00:00.000Z",
+      "duration": "8 hours",
+      "location": "Houston",
+      "address": "Memorial Park, Houston, TX",
+      "organizer": "Houston Family Events",
+      "categories": ["Family", "Community"],
+      "image": "https://placehold.co/800x400"
+    },
+    {
+      "id": "10",
+      "title": "Science & Technology Fair",
+      "description": "Interactive exhibits, demonstrations, and presentations showcasing the latest innovations in science and technology. Great for all ages!",
+      "date": "2025-08-15T10:00:00.000Z",
+      "duration": "3 days",
+      "location": "Seattle",
+      "address": "Seattle Science Center, Seattle, WA",
+      "organizer": "Future Tech Foundation",
+      "categories": ["Science", "Technology", "Education"],
+      "image": "https://placehold.co/800x400"
+    }
+  ]
+}

@@ -56,7 +56,7 @@ export default function EventsFilter() {
           Location
         </label>
         <Select value={location} onValueChange={setLocation}>
-          <SelectTrigger id="location">
+          <SelectTrigger id="location" className="w-[25vw]">
             <SelectValue placeholder="Select location" />
           </SelectTrigger>
           <SelectContent>
@@ -75,7 +75,7 @@ export default function EventsFilter() {
           Category
         </label>
         <Select value={category} onValueChange={setCategory}>
-          <SelectTrigger id="category">
+          <SelectTrigger id="category" className="w-[25vw]">
             <SelectValue placeholder="Select category" />
           </SelectTrigger>
           <SelectContent>
