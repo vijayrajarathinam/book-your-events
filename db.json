@@ -1,124 +1,340 @@
 {
   "events": [
     {
-      "id": "1",
-      "title": "Summer Music Festival",
-      "description": "Join us for a weekend of amazing music performances from top artists across multiple genres. Food vendors, art installations, and more!",
-      "date": "2025-07-15T18:00:00.000Z",
-      "duration": "3 days",
-      "location": "New York",
-      "address": "Central Park, New York, NY",
-      "organizer": "NYC Events Co.",
-      "categories": ["Music", "Arts", "Food & Drink"],
-      "image": "https://placehold.co/800x400"
+      "id": 1,
+      "type": "CREATED",
+      "owner_id": "123663",
+      "city": "pune",
+      "payload": {
+        "event_date": "30-07-2022",
+        "event_time": "15:00",
+        "image": "https://corefestival.com/uploads/resized/uploads/256610/220528-132053-CORE22-HL-_HIL2573-LR_2022-10-27-121950_yhmp_4092684b658d2e7b7a3f764f5c1c951a.webp",
+        "items": [
+          {
+            "event_id": "4378843",
+            "event_name": "Musical night1",
+            "event_title": "IGNITE YOUR ENTREPRENEURIAL SPIRIT",
+            "event_description": "Small Business Expo is America's Largest Business to Business Trade Show, Conference & Networking Event for Small Business Owners, Entrepreneurs & Start-Ups.",
+            "location": {
+              "loc_address": {
+                "name": "name of address",
+                "address_1": "Address 1",
+                "address_2": "Address2",
+                "city_name": "city name",
+                "state_id": 62,
+                "state_short_name": "abc xyz",
+                "postal_code": "410410",
+                "phone_number": "878997798987",
+                "country_name": "India",
+                "country_code": 91,
+                "is_commercial": true,
+                "company_name": "abc"
+              },
+              "loc_geometry": {
+                "type": "Point",
+                "coordinates": [-72.7738706, 41.6332836]
+              }
+            },
+            "sell_price": "$100",
+            "orig_price": "150"
+          }
+        ]
+      },
+      "published_at": "30-07-2022"
     },
     {
-      "id": "2",
-      "title": "Tech Conference 2025",
-      "description": "The biggest tech conference of the year featuring keynotes from industry leaders, workshops, networking opportunities, and product showcases.",
-      "date": "2025-05-20T09:00:00.000Z",
-      "duration": "2 days",
-      "location": "San Francisco",
-      "address": "Moscone Center, San Francisco, CA",
-      "organizer": "TechEvents Global",
-      "categories": ["Technology", "Business", "Education"],
-      "image": "https://placehold.co/800x400"
+      "id": 2,
+      "type": "CREATED",
+      "owner_id": "123663",
+      "city": "mumbai",
+      "payload": {
+        "event_date": "30-07-2022",
+        "event_time": "15:00",
+        "image": "https://corefestival.com/uploads/resized/uploads/256602/220528-145527-CORE-2B4A2982-PW_2022-10-27-121941_caia_4092684b658d2e7b7a3f764f5c1c951a.webp",
+        "items": [
+          {
+            "event_id": "4378843",
+            "event_name": "Musical night1",
+            "event_title": "IGNITE YOUR ENTREPRENEURIAL SPIRIT",
+            "event_description": "Small Business Expo is America's Largest Business to Business Trade Show, Conference & Networking Event for Small Business Owners, Entrepreneurs & Start-Ups.",
+            "location": {
+              "loc_address": {
+                "name": "abc xyz",
+                "address_1": "abc xyz",
+                "address_2": "abc xyz",
+                "city_name": "abc xyz",
+                "state_id": 62,
+                "state_short_name": "abc xyz",
+                "postal_code": "abc xyz",
+                "phone_number": "878997798987",
+                "country_name": "India",
+                "country_code": 91,
+                "is_commercial": true,
+                "company_name": "abc"
+              },
+              "loc_geometry": {
+                "type": "Point",
+                "coordinates": [-72.7738706, 41.6332836]
+              }
+            },
+            "sell_price": "$100",
+            "orig_price": "150"
+          }
+        ]
+      },
+      "published_at": "30-07-2022"
     },
     {
-      "id": "3",
-      "title": "Food & Wine Festival",
-      "description": "Sample delicious cuisine from top chefs and taste premium wines from around the world. Cooking demonstrations, tastings, and more!",
-      "date": "2025-06-10T12:00:00.000Z",
-      "duration": "4 hours",
-      "location": "Chicago",
-      "address": "Millennium Park, Chicago, IL",
-      "organizer": "Taste of Chicago",
-      "categories": ["Food & Drink"],
-      "image": "https://placehold.co/800x400"
+      "id": 3,
+      "type": "CREATED",
+      "owner_id": "123663",
+      "city": "pune",
+      "payload": {
+        "event_date": "30-07-2022",
+        "event_time": "15:00",
+        "image": "https://corefestival.com/uploads/resized/uploads/256598/220527-221518-CORE2022-SL-DSC_7178-LR_2022-10-27-121934_enjt_4092684b658d2e7b7a3f764f5c1c951a.webp",
+        "items": [
+          {
+            "event_id": "4378843",
+            "event_name": "Musical night3",
+            "event_title": "IGNITE YOUR ENTREPRENEURIAL SPIRIT",
+            "event_description": "Small Business Expo is America's Largest Business to Business Trade Show, Conference & Networking Event for Small Business Owners, Entrepreneurs & Start-Ups.",
+            "location": {
+              "loc_address": {
+                "name": "abc xyz",
+                "address_1": "abc xyz",
+                "address_2": "abc xyz",
+                "city_name": "abc xyz",
+                "state_id": 62,
+                "state_short_name": "abc xyz",
+                "postal_code": "abc xyz",
+                "phone_number": "878997798987",
+                "country_name": "India",
+                "country_code": 91,
+                "is_commercial": true,
+                "company_name": "abc"
+              },
+              "loc_geometry": {
+                "type": "Point",
+                "coordinates": [-72.7738706, 41.6332836]
+              }
+            },
+            "sell_price": "$100",
+            "orig_price": "150"
+          }
+        ]
+      },
+      "published_at": "30-07-2022"
     },
     {
-      "id": "4",
-      "title": "Marathon for Charity",
-      "description": "Run for a cause! Join thousands of participants in this annual marathon to raise funds for local charities. All fitness levels welcome.",
-      "date": "2025-04-05T07:00:00.000Z",
-      "duration": "1 day",
-      "location": "Boston",
-      "address": "Boston Common, Boston, MA",
-      "organizer": "Boston Runners Association",
-      "categories": ["Sports & Fitness", "Charity & Causes"],
-      "image": "https://placehold.co/800x400"
+      "id": 4,
+      "type": "CREATED",
+      "owner_id": "123663",
+      "city": "panjim",
+      "payload": {
+        "event_date": "30-07-2022",
+        "event_time": "15:00",
+        "image": "https://corefestival.com/uploads/resized/uploads/256598/220527-221518-CORE2022-SL-DSC_7178-LR_2022-10-27-121934_enjt_4092684b658d2e7b7a3f764f5c1c951a.webp",
+        "items": [
+          {
+            "event_id": "4378843",
+            "event_name": "Musical night4",
+            "event_title": "IGNITE YOUR ENTREPRENEURIAL SPIRIT",
+            "event_description": "Small Business Expo is America's Largest Business to Business Trade Show, Conference & Networking Event for Small Business Owners, Entrepreneurs & Start-Ups.",
+            "location": {
+              "loc_address": {
+                "name": "abc xyz",
+                "address_1": "abc xyz",
+                "address_2": "abc xyz",
+                "city_name": "abc xyz",
+                "state_id": 62,
+                "state_short_name": "abc xyz",
+                "postal_code": "abc xyz",
+                "phone_number": "878997798987",
+                "country_name": "India",
+                "country_code": 91,
+                "is_commercial": true,
+                "company_name": "abc"
+              },
+              "loc_geometry": {
+                "type": "Point",
+                "coordinates": [-72.7738706, 41.6332836]
+              }
+            },
+            "sell_price": "$100",
+            "orig_price": "150"
+          }
+        ]
+      },
+      "published_at": "30-07-2022"
     },
     {
-      "id": "5",
-      "title": "Art Exhibition Opening",
-      "description": "Be among the first to see this stunning collection of contemporary art from emerging artists. Meet the artists and enjoy complimentary refreshments.",
-      "date": "2025-08-12T19:00:00.000Z",
-      "duration": "3 hours",
-      "location": "Los Angeles",
-      "address": "LA Contemporary Art Museum, Los Angeles, CA",
-      "organizer": "LA Arts Council",
-      "categories": ["Arts", "Community"],
-      "image": "https://placehold.co/800x400"
+      "id": 5,
+      "type": "CREATED",
+      "owner_id": "123663",
+      "city": "pune",
+      "payload": {
+        "event_date": "30-07-2022",
+        "event_time": "15:00",
+        "image": "https://corefestival.com/uploads/resized/uploads/256619/220528-162028-CORE2022-SL-DSC_8161-LR_2022-10-27-122006_izfp_4092684b658d2e7b7a3f764f5c1c951a.webp",
+        "items": [
+          {
+            "event_id": "4378843",
+            "event_name": "Musical night5",
+            "event_title": "IGNITE YOUR ENTREPRENEURIAL SPIRIT",
+            "event_description": "Small Business Expo is America's Largest Business to Business Trade Show, Conference & Networking Event for Small Business Owners, Entrepreneurs & Start-Ups.",
+            "location": {
+              "loc_address": {
+                "name": "abc xyz",
+                "address_1": "abc xyz",
+                "address_2": "abc xyz",
+                "city_name": "abc xyz",
+                "state_id": 62,
+                "state_short_name": "abc xyz",
+                "postal_code": "abc xyz",
+                "phone_number": "878997798987",
+                "country_name": "India",
+                "country_code": 91,
+                "is_commercial": true,
+                "company_name": "abc"
+              },
+              "loc_geometry": {
+                "type": "Point",
+                "coordinates": [-72.7738706, 41.6332836]
+              }
+            },
+            "sell_price": "$100",
+            "orig_price": "150"
+          }
+        ]
+      },
+      "published_at": "30-07-2022"
     },
     {
-      "id": "6",
-      "title": "Business Networking Mixer",
-      "description": "Connect with professionals in your industry at this casual networking event. Perfect for making new contacts and exploring business opportunities.",
-      "date": "2025-05-15T18:30:00.000Z",
-      "duration": "2 hours",
-      "location": "New York",
-      "address": "The Grand Hotel, New York, NY",
-      "organizer": "NYC Business Network",
-      "categories": ["Business", "Community"],
-      "image": "https://placehold.co/800x400"
+      "id": 6,
+      "type": "CREATED",
+      "owner_id": "123663",
+      "city": "pune",
+      "payload": {
+        "event_date": "30-07-2022",
+        "event_time": "15:00",
+        "image": "https://corefestival.com/uploads/resized/uploads/256595/220527-214401-CORE22-HL-_LEH5983-LR_2022-10-27-121925_klwv_4092684b658d2e7b7a3f764f5c1c951a.webp",
+        "items": [
+          {
+            "event_id": "4378843",
+            "event_name": "Musical night6",
+            "event_title": "IGNITE YOUR ENTREPRENEURIAL SPIRIT",
+            "event_description": "Small Business Expo is America's Largest Business to Business Trade Show, Conference & Networking Event for Small Business Owners, Entrepreneurs & Start-Ups.",
+            "location": {
+              "loc_address": {
+                "name": "abc xyz",
+                "address_1": "abc xyz",
+                "address_2": "abc xyz",
+                "city_name": "abc xyz",
+                "state_id": 62,
+                "state_short_name": "abc xyz",
+                "postal_code": "abc xyz",
+                "phone_number": "878997798987",
+                "country_name": "India",
+                "country_code": 91,
+                "is_commercial": true,
+                "company_name": "abc"
+              },
+              "loc_geometry": {
+                "type": "Point",
+                "coordinates": [-72.7738706, 41.6332836]
+              }
+            },
+            "sell_price": "$100",
+            "orig_price": "150"
+          }
+        ]
+      },
+      "published_at": "30-07-2022"
     },
     {
-      "id": "7",
-      "title": "Film Festival",
-      "description": "A celebration of independent cinema featuring screenings, director Q&As, and workshops. Discover the next generation of filmmaking talent!",
-      "date": "2025-09-20T10:00:00.000Z",
-      "duration": "5 days",
-      "location": "Austin",
-      "address": "Various Venues, Austin, TX",
-      "organizer": "Austin Film Society",
-      "categories": ["Film & Media", "Arts"],
-      "image": "https://placehold.co/800x400"
+      "id": 7,
+      "type": "CREATED",
+      "owner_id": "123663",
+      "city": "pune",
+      "payload": {
+        "event_date": "30-07-2022",
+        "event_time": "15:00",
+        "image": "https://corefestival.com/uploads/resized/uploads/256619/220528-162028-CORE2022-SL-DSC_8161-LR_2022-10-27-122006_izfp_4092684b658d2e7b7a3f764f5c1c951a.webp",
+        "items": [
+          {
+            "event_id": "4378843",
+            "event_name": "Musical night7",
+            "event_title": "IGNITE YOUR ENTREPRENEURIAL SPIRIT",
+            "event_description": "Small Business Expo is America's Largest Business to Business Trade Show, Conference & Networking Event for Small Business Owners, Entrepreneurs & Start-Ups.",
+            "location": {
+              "loc_address": {
+                "name": "abc xyz",
+                "address_1": "abc xyz",
+                "address_2": "abc xyz",
+                "city_name": "abc xyz",
+                "state_id": 62,
+                "state_short_name": "abc xyz",
+                "postal_code": "abc xyz",
+                "phone_number": "878997798987",
+                "country_name": "India",
+                "country_code": 91,
+                "is_commercial": true,
+                "company_name": "abc"
+              },
+              "loc_geometry": {
+                "type": "Point",
+                "coordinates": [-72.7738706, 41.6332836]
+              }
+            },
+            "sell_price": "$100",
+            "orig_price": "150"
+          }
+        ]
+      },
+      "published_at": "30-07-2022"
     },
     {
-      "id": "8",
-      "title": "Health & Wellness Expo",
-      "description": "Explore the latest in health, fitness, and wellness. Free health screenings, product samples, demonstrations, and expert talks.",
-      "date": "2025-06-25T09:00:00.000Z",
-      "duration": "2 days",
-      "location": "Miami",
-      "address": "Miami Convention Center, Miami, FL",
-      "organizer": "Wellness Today",
-      "categories": ["Health", "Sports & Fitness"],
-      "image": "https://placehold.co/800x400"
-    },
-    {
-      "id": "9",
-      "title": "Family Fun Day",
-      "description": "A day of activities for the whole family! Games, rides, entertainment, food, and more. Create memories that will last a lifetime.",
-      "date": "2025-07-04T11:00:00.000Z",
-      "duration": "8 hours",
-      "location": "Houston",
-      "address": "Memorial Park, Houston, TX",
-      "organizer": "Houston Family Events",
-      "categories": ["Family", "Community"],
-      "image": "https://placehold.co/800x400"
-    },
-    {
-      "id": "10",
-      "title": "Science & Technology Fair",
-      "description": "Interactive exhibits, demonstrations, and presentations showcasing the latest innovations in science and technology. Great for all ages!",
-      "date": "2025-08-15T10:00:00.000Z",
-      "duration": "3 days",
-      "location": "Seattle",
-      "address": "Seattle Science Center, Seattle, WA",
-      "organizer": "Future Tech Foundation",
-      "categories": ["Science", "Technology", "Education"],
-      "image": "https://placehold.co/800x400"
+      "id": 8,
+      "type": "CREATED",
+      "owner_id": "123663",
+      "city": "pune",
+      "payload": {
+        "event_date": "30-07-2022",
+        "event_time": "15:00",
+        "image": "https://corefestival.com/uploads/resized/uploads/256601/220527-232020-CORE2022-SL-DSC_7419-LR_2022-10-27-121940_tpre_e31f29c55599f853f2906f746f7dfa4e.webp",
+        "items": [
+          {
+            "event_id": "4378843",
+            "event_name": "Musical night8",
+            "event_title": "IGNITE YOUR ENTREPRENEURIAL SPIRIT",
+            "event_description": "Small Business Expo is America's Largest Business to Business Trade Show, Conference & Networking Event for Small Business Owners, Entrepreneurs & Start-Ups.",
+            "location": {
+              "loc_address": {
+                "name": "abc xyz",
+                "address_1": "abc xyz",
+                "address_2": "abc xyz",
+                "city_name": "abc xyz",
+                "state_id": 62,
+                "state_short_name": "abc xyz",
+                "postal_code": "abc xyz",
+                "phone_number": "878997798987",
+                "country_name": "India",
+                "country_code": 91,
+                "is_commercial": true,
+                "company_name": "abc"
+              },
+              "loc_geometry": {
+                "type": "Point",
+                "coordinates": [-72.7738706, 41.6332836]
+              }
+            },
+            "sell_price": "$100",
+            "orig_price": "150"
+          }
+        ]
+      },
+      "published_at": "30-07-2022"
     }
   ]
 }

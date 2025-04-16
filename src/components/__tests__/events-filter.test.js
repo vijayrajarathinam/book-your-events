@@ -31,8 +31,7 @@ describe("EventsFilter", () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByLabelText(/location/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/category/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/city/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/search/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /search/i })).toBeInTheDocument();
   });
@@ -79,9 +78,8 @@ describe("EventsFilter", () => {
   test("initializes with values from URL search params", () => {
     // Setup search params with initial values
     const paramsWithValues = new URLSearchParams();
-    paramsWithValues.set("location", "New York");
-    paramsWithValues.set("category", "Music");
-    paramsWithValues.set("q", "festival");
+    paramsWithValues.set("city", "pune");
+    paramsWithValues.set("q", "musical");
 
     jest
       .spyOn(router, "useSearchParams")
@@ -95,7 +93,7 @@ describe("EventsFilter", () => {
 
     // Check if search input has the value from URL params
     const searchInput = screen.getByPlaceholderText(/search events/i);
-    expect(searchInput).toHaveValue("festival");
+    expect(searchInput).toHaveValue("musical");
   });
 
   test("updates URL with all filter parameters", async () => {
@@ -105,17 +103,13 @@ describe("EventsFilter", () => {
       </BrowserRouter>
     );
 
-    // Set location (mocking the select change)
-    const locationSelect = screen.getByLabelText(/location/i);
-    fireEvent.change(locationSelect, { target: { value: "New York" } });
-
-    // Set category (mocking the select change)
-    const categorySelect = screen.getByLabelText(/category/i);
-    fireEvent.change(categorySelect, { target: { value: "Music" } });
+    // Set city (mocking the select change)
+    const citySelect = screen.getByLabelText(/city/i);
+    fireEvent.change(citySelect, { target: { value: "pune" } });
 
     // Set search query
     const searchInput = screen.getByPlaceholderText(/search events/i);
-    fireEvent.change(searchInput, { target: { value: "concert" } });
+    fireEvent.change(searchInput, { target: { value: "musical" } });
 
     // Click search button
     const searchButton = screen.getByRole("button", { name: /search/i });

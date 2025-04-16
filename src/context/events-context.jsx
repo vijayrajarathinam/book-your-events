@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useCallback } from "react";
-import { fetchEvents as fetchEventsApi } from "@/services/api";
+import { fetchEvents as fetchEventsApi } from "../services/api";
 
 const EventsContext = createContext(undefined);
 
@@ -10,11 +10,11 @@ export function EventsProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchEvents = useCallback(async (location, category, query) => {
+  const fetchEvents = useCallback(async (city, query) => {
     try {
       setLoading(true);
       setError(null);
-      const data = await fetchEventsApi(location, category, query);
+      const data = await fetchEventsApi(city, query);
       setEvents(data);
     } catch (err) {
       console.error("Failed to fetch events:", err);

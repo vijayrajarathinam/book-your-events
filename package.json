@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "json-server --watch db.json --port 3001",
+    "server": "json-server --watch db.json --port 3002",
     "test": "jest --config=jest.config.js",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"

@@ -5,28 +5,89 @@ import EventsList from "../../components/events-list";
 describe("EventsList", () => {
   const mockEvents = [
     {
-      id: "1",
-      title: "Summer Music Festival",
-      description: "A great music festival with top artists",
-      date: "2025-07-15T18:00:00.000Z",
-      duration: "3 days",
-      location: "New York",
-      address: "Central Park, New York, NY",
-      organizer: "NYC Events Co.",
-      categories: ["Music", "Arts"],
-      image: "https://placehold.co/400x200",
+      id: 1,
+      type: "CREATED",
+      owner_id: "123663",
+      city: "pune",
+      payload: {
+        event_date: "30-07-2022",
+        event_time: "15:00",
+        image: "https://example.com/image1.jpg",
+        items: [
+          {
+            event_id: "4378843",
+            event_name: "Musical night1",
+            event_title: "IGNITE YOUR ENTREPRENEURIAL SPIRIT",
+            event_description:
+              "Small Business Expo is America's Largest Business to Business Trade Show.",
+            location: {
+              loc_address: {
+                name: "name of address",
+                address_1: "Address 1",
+                address_2: "Address2",
+                city_name: "city name",
+                state_id: 62,
+                state_short_name: "abc xyz",
+                postal_code: "410410",
+                phone_number: "878997798987",
+                country_name: "India",
+                country_code: 91,
+                is_commercial: true,
+                company_name: "abc",
+              },
+              loc_geometry: {
+                type: "Point",
+                coordinates: [-72.7738706, 41.6332836],
+              },
+            },
+            sell_price: "$100",
+            orig_price: "150",
+          },
+        ],
+      },
+      published_at: "30-07-2022",
     },
     {
-      id: "2",
-      title: "Tech Conference",
-      description: "Learn about the latest technologies",
-      date: "2025-05-20T09:00:00.000Z",
-      duration: "2 days",
-      location: "San Francisco",
-      address: "Moscone Center, San Francisco, CA",
-      organizer: "TechEvents Global",
-      categories: ["Technology", "Business"],
-      image: "https://placehold.co/400x200",
+      id: 2,
+      type: "CREATED",
+      owner_id: "123663",
+      city: "mumbai",
+      payload: {
+        event_date: "30-07-2022",
+        event_time: "16:00",
+        image: "https://example.com/image2.jpg",
+        items: [
+          {
+            event_id: "4378844",
+            event_name: "Tech Conference",
+            event_title: "TECH INNOVATION SUMMIT",
+            event_description: "Join the biggest tech conference of the year.",
+            location: {
+              loc_address: {
+                name: "abc xyz",
+                address_1: "abc xyz",
+                address_2: "abc xyz",
+                city_name: "abc xyz",
+                state_id: 62,
+                state_short_name: "abc xyz",
+                postal_code: "abc xyz",
+                phone_number: "878997798987",
+                country_name: "India",
+                country_code: 91,
+                is_commercial: true,
+                company_name: "abc",
+              },
+              loc_geometry: {
+                type: "Point",
+                coordinates: [-72.7738706, 41.6332836],
+              },
+            },
+            sell_price: "$200",
+            orig_price: "250",
+          },
+        ],
+      },
+      published_at: "30-07-2022",
     },
   ];
 
@@ -49,7 +110,7 @@ describe("EventsList", () => {
     );
 
     // Check if both event titles are rendered
-    expect(screen.getByText("Summer Music Festival")).toBeInTheDocument();
+    expect(screen.getByText("Musical night1")).toBeInTheDocument();
     expect(screen.getByText("Tech Conference")).toBeInTheDocument();
   });
 
@@ -62,15 +123,17 @@ describe("EventsList", () => {
 
     // Check if descriptions are rendered
     expect(
-      screen.getByText("A great music festival with top artists")
+      screen.getByText(
+        "Small Business Expo is America's Largest Business to Business Trade Show."
+      )
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Learn about the latest technologies")
+      screen.getByText("Join the biggest tech conference of the year.")
     ).toBeInTheDocument();
 
-    // Check if locations are rendered
-    expect(screen.getByText("New York")).toBeInTheDocument();
-    expect(screen.getByText("San Francisco")).toBeInTheDocument();
+    // Check if cities are rendered
+    expect(screen.getAllByText("pune")[0]).toBeInTheDocument();
+    expect(screen.getAllByText("mumbai")[0]).toBeInTheDocument();
   });
 
   test("renders event images", () => {
@@ -83,22 +146,22 @@ describe("EventsList", () => {
     // Check if images are rendered with correct alt text
     const images = screen.getAllByRole("img");
     expect(images).toHaveLength(2);
-    expect(images[0]).toHaveAttribute("alt", "Summer Music Festival");
+    expect(images[0]).toHaveAttribute("alt", "Musical night1");
     expect(images[1]).toHaveAttribute("alt", "Tech Conference");
   });
 
-  test("renders multiple category badges per event", () => {
+  test("renders price information", () => {
     render(
       <BrowserRouter>
         <EventsList events={mockEvents} />
       </BrowserRouter>
     );
 
-    // Check if all category badges are rendered
-    expect(screen.getByText("Music")).toBeInTheDocument();
-    expect(screen.getByText("Arts")).toBeInTheDocument();
-    expect(screen.getByText("Technology")).toBeInTheDocument();
-    expect(screen.getByText("Business")).toBeInTheDocument();
+    // Check if prices are rendered
+    expect(screen.getByText("$100")).toBeInTheDocument();
+    expect(screen.getByText("150")).toBeInTheDocument();
+    expect(screen.getByText("$200")).toBeInTheDocument();
+    expect(screen.getByText("250")).toBeInTheDocument();
   });
 
   test("links to the correct event detail pages", () => {

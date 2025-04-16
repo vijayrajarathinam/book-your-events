@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { format } from "date-fns";
+import { parse, format } from "date-fns";
 import {
   Calendar,
   Clock,
@@ -10,6 +10,7 @@ import {
   ArrowLeft,
   Share2,
   Heart,
+  DollarSign,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
@@ -51,6 +52,17 @@ export default function EventDetailPage() {
     navigate(-1);
   };
 
+  const formatDate = (dateStr) => {
+    try {
+      // Parse the date in DD-MM-YYYY format
+      const date = parse(dateStr, "dd-MM-yyyy", new Date());
+      return format(date, "EEEE, MMMM d, yyyy");
+    } catch (error) {
+      console.error("Error parsing date:", error);
+      return dateStr;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -75,15 +87,20 @@ export default function EventDetailPage() {
               <div className="md:col-span-2 space-y-6">
                 <div className="relative rounded-lg overflow-hidden h-[300px] md:h-[400px]">
                   <img
-                    src={event.image || "https://placehold.co/800x400"}
-                    alt={event.title}
+                    src={event.payload.image || "/placeholder.svg"}
+                    alt={event.payload.items[0].event_name}
                     className="w-full h-full object-cover"
                   />
+                  <Badge className="absolute top-4 right-4 capitalize">
+                    {event.city}
+                  </Badge>
                 </div>
 
                 <div className="space-y-4">
                   <div className="flex justify-between items-start">
-                    <h1 className="text-3xl font-bold">{event.title}</h1>
+                    <h1 className="text-3xl font-bold">
+                      {event.payload.items[0].event_name}
+                    </h1>
                     <div className="flex gap-2">
                       <Button size="icon" variant="outline">
                         <Heart className="h-4 w-4" />
@@ -94,18 +111,12 @@ export default function EventDetailPage() {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
-                    {event.categories?.map((category) => (
-                      <Badge key={category} variant="secondary">
-                        {category}
-                      </Badge>
-                    ))}
-                  </div>
-
                   <div className="space-y-2">
-                    <h2 className="text-xl font-semibold">About this event</h2>
+                    <h2 className="text-xl font-semibold">
+                      {event.payload.items[0].event_title}
+                    </h2>
                     <p className="text-muted-foreground whitespace-pre-line">
-                      {event.description}
+                      {event.payload.items[0].event_description}
                     </p>
                   </div>
                 </div>
@@ -118,16 +129,11 @@ export default function EventDetailPage() {
                       <h3 className="font-semibold">Date and time</h3>
                       <div className="flex items-center gap-2 text-muted-foreground">
                         <Calendar className="h-4 w-4" />
-                        <span>
-                          {format(new Date(event.date), "EEEE, MMMM d, yyyy")}
-                        </span>
+                        <span>{formatDate(event.payload.event_date)}</span>
                       </div>
                       <div className="flex items-center gap-2 text-muted-foreground">
                         <Clock className="h-4 w-4" />
-                        <span>
-                          {format(new Date(event.date), "h:mm a")} -{" "}
-                          {event.duration}
-                        </span>
+                        <span>{event.payload.event_time}</span>
                       </div>
                     </div>
 
@@ -135,11 +141,25 @@ export default function EventDetailPage() {
                       <h3 className="font-semibold">Location</h3>
                       <div className="flex items-center gap-2 text-muted-foreground">
                         <MapPin className="h-4 w-4" />
-                        <span>{event.location}</span>
+                        <span>{event.city}</span>
                       </div>
                       <p className="text-sm text-muted-foreground">
-                        {event.address}
+                        {event.payload.items[0].location.loc_address.address_1},{" "}
+                        {event.payload.items[0].location.loc_address.city_name}
                       </p>
+                    </div>
+
+                    <div className="space-y-2">
+                      <h3 className="font-semibold">Price</h3>
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <DollarSign className="h-4 w-4" />
+                        <span className="font-medium text-primary">
+                          {event.payload.items[0].sell_price}
+                        </span>
+                        <span className="line-through text-sm">
+                          {event.payload.items[0].orig_price}
+                        </span>
+                      </div>
                     </div>
 
                     <div className="pt-4">
@@ -150,19 +170,29 @@ export default function EventDetailPage() {
 
                 <Card>
                   <CardContent className="p-6 space-y-4">
-                    <h3 className="font-semibold">Organizer</h3>
-                    <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 rounded-full bg-muted flex items-center justify-center">
-                        <span className="text-sm font-medium">
-                          {event.organizer?.charAt(0) || "O"}
-                        </span>
-                      </div>
-                      <div>
-                        <p className="font-medium">{event.organizer}</p>
-                        <p className="text-sm text-muted-foreground">
-                          Event Organizer
-                        </p>
-                      </div>
+                    <h3 className="font-semibold">Contact Information</h3>
+                    <div className="space-y-2">
+                      <p className="text-sm">
+                        <span className="font-medium">Phone:</span>{" "}
+                        {
+                          event.payload.items[0].location.loc_address
+                            .phone_number
+                        }
+                      </p>
+                      <p className="text-sm">
+                        <span className="font-medium">Company:</span>{" "}
+                        {
+                          event.payload.items[0].location.loc_address
+                            .company_name
+                        }
+                      </p>
+                      <p className="text-sm">
+                        <span className="font-medium">Country:</span>{" "}
+                        {
+                          event.payload.items[0].location.loc_address
+                            .country_name
+                        }
+                      </p>
                     </div>
                   </CardContent>
                 </Card>

@@ -1,25 +1,20 @@
 // Base URL for the JSON server
-const API_URL = "http://localhost:3001";
+const API_URL = "http://localhost:3002";
 
 // Fetch all events with optional filters
-export async function fetchEvents(location, category, query) {
+export async function fetchEvents(city, query) {
   try {
     let url = `${API_URL}/events`;
     const params = new URLSearchParams();
 
-    if (location && location !== "all") {
-      params.append("location", location);
-    }
-
-    if (category && category !== "all") {
-      params.append("categories_like", category);
+    if (city && city !== "all") {
+      params.append("city", city);
     }
 
     if (query) {
-      params.append("q", query);
-    }
-
-    if (params.toString()) {
+      // Search in event_name, event_title, and event_description
+      url += `?${params.toString()}&q=${query}`;
+    } else if (params.toString()) {
       url += `?${params.toString()}`;
     }
 

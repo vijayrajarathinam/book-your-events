@@ -10,36 +10,25 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import { locations } from "../data/locations";
-import { categories } from "../data/categories";
+import { cities } from "../data/cities";
 
 export default function EventsFilter() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  const [location, setLocation] = useState(
-    searchParams.get("location") || "all"
-  );
-  const [category, setCategory] = useState(
-    searchParams.get("category") || "all"
-  );
+  const [city, setCity] = useState(searchParams.get("city") || "all");
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
 
   useEffect(() => {
-    setLocation(searchParams.get("location") || "all");
-    setCategory(searchParams.get("category") || "all");
+    setCity(searchParams.get("city") || "all");
     setSearchQuery(searchParams.get("q") || "");
   }, [searchParams]);
 
   const handleSearch = () => {
     const params = new URLSearchParams();
 
-    if (location !== "all") {
-      params.set("location", location);
-    }
-
-    if (category !== "all") {
-      params.set("category", category);
+    if (city !== "all") {
+      params.set("city", city);
     }
 
     if (searchQuery) {
@@ -52,39 +41,22 @@ export default function EventsFilter() {
   return (
     <div className="flex flex-col gap-4 md:flex-row md:items-end">
       <div className="grid w-full max-w-sm items-center gap-1.5">
-        <label htmlFor="location" className="text-sm font-medium">
-          Location
+        <label htmlFor="city" className="text-sm font-medium">
+          City
         </label>
-        <Select value={location} onValueChange={setLocation}>
-          <SelectTrigger id="location" className="w-[25vw]">
-            <SelectValue placeholder="Select location" />
+        <Select value={city} onValueChange={setCity}>
+          <SelectTrigger id="city">
+            <SelectValue placeholder="Select city" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Locations</SelectItem>
-            {locations.map((loc) => (
-              <SelectItem key={loc} value={loc}>
-                {loc}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-
-      <div className="grid w-full max-w-sm items-center gap-1.5">
-        <label htmlFor="category" className="text-sm font-medium">
-          Category
-        </label>
-        <Select value={category} onValueChange={setCategory}>
-          <SelectTrigger id="category" className="w-[25vw]">
-            <SelectValue placeholder="Select category" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Categories</SelectItem>
-            {categories.map((cat) => (
-              <SelectItem key={cat} value={cat}>
-                {cat}
-              </SelectItem>
-            ))}
+            <SelectItem value="all">All Cities</SelectItem>
+            {cities
+              .filter((c) => c !== "all")
+              .map((city) => (
+                <SelectItem key={city} value={city} className="capitalize">
+                  {city}
+                </SelectItem>
+              ))}
           </SelectContent>
         </Select>
       </div>

@@ -21,13 +21,12 @@ function EventsContent() {
   const { events, loading, error, fetchEvents } = useEventsContext();
   const [viewMode, setViewMode] = useState("list"); // ("list" , "grid");
   const [searchParams] = useSearchParams();
-  const location = searchParams.get("location") || "all";
-  const category = searchParams.get("category") || "all";
+  const city = searchParams.get("city") || "all";
   const query = searchParams.get("q") || "";
 
   useEffect(() => {
-    fetchEvents(location, category, query);
-  }, [fetchEvents, location, category, query]);
+    fetchEvents(city, query);
+  }, [fetchEvents, city, query]);
 
   return (
     <div className="flex flex-col gap-6">
@@ -41,8 +40,8 @@ function EventsContent() {
       <EventsFilter />
 
       <div className="flex flex-col justify-between items-center">
-        <h2 className="text-xl font-semibold">
-          {location === "all" ? "All Events" : `Events in ${location}`}
+        <h2 className="text-xl font-semibold capitalize">
+          {city === "all" ? "All Events" : `Events in ${city}`}
         </h2>
         <Tabs
           defaultValue={viewMode}
@@ -73,15 +72,13 @@ function EventsContent() {
       </div>
 
       {loading ? (
-        <div className="flex justify-center items-center h-64">
+        <div className="flex justify-center items-center h-64" role="status">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
         </div>
       ) : error ? (
         <div className="flex flex-col items-center justify-center h-64 gap-4">
           <p className="text-destructive text-lg">Failed to load events</p>
-          <Button onClick={() => fetchEvents(location, category, query)}>
-            Try Again
-          </Button>
+          <Button onClick={() => fetchEvents(city, query)}>Try Again</Button>
         </div>
       ) : (
         <div className="mt-6">
