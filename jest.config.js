@@ -13,4 +13,13 @@ export default {
     "<rootDir>/src/**/*.{spec,test}.{js,jsx}",
   ],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+  coverageThreshold: {
+    global: {
+      branches: 20,
+      functions: 30,
+      lines: 50,
+      statements: 50,
+    },
+  },
+  coveragePathIgnorePatterns: ["node_modules", "<rootDir>/src/components/ui"],
 };

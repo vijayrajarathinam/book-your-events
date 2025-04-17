@@ -1,12 +1,11 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import configureStore from "redux-mock-store";
+import { thunk } from "redux-thunk";
 import EventsPage from "../../pages/EventsPage";
-import { EventsProvider } from "../../context/events-context";
 import { ThemeProvider } from "../../context/theme-provider";
-import * as api from "../../services/api";
-
-// Mock the API
-jest.mock("../../services/api");
+// import { jest, beforeEach, describe, test, xtest, expect } from "@jest/globals";
 
 // Mock the components that are used in EventsPage
 jest.mock("../../components/header", () => {
@@ -45,7 +44,13 @@ jest.mock("../../components/events-list", () => {
   };
 });
 
-describe("EventsPage", () => {
+// Create mock store
+const middlewares = [thunk];
+const mockStore = configureStore(middlewares);
+
+describe("EventsPage with Redux", () => {
+  let store;
+
   const mockEvents = [
     {
       id: 1,
@@ -135,20 +140,29 @@ describe("EventsPage", () => {
   ];
 
   beforeEach(() => {
-    jest.clearAllMocks();
-    // Mock the fetchEvents API call
-    jest.spyOn(api, "fetchEvents").mockResolvedValue(mockEvents);
+    // Initialize store with initial state
+    store = mockStore({
+      events: {
+        events: [],
+        selectedEvent: null,
+        loading: false,
+        error: null,
+      },
+    });
+
+    // Mock dispatch to track actions
+    store.dispatch = jest.fn().mockImplementation(() => Promise.resolve());
   });
 
-  test("renders the page with all components", async () => {
+  test("renders the page with all components", () => {
     render(
-      <BrowserRouter>
-        <ThemeProvider>
-          <EventsProvider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <ThemeProvider>
             <EventsPage />
-          </EventsProvider>
-        </ThemeProvider>
-      </BrowserRouter>
+          </ThemeProvider>
+        </BrowserRouter>
+      </Provider>
     );
 
     // Check if header and filter components are rendered
@@ -161,76 +175,90 @@ describe("EventsPage", () => {
       screen.getByText("Discover amazing events happening near you")
     ).toBeInTheDocument();
 
-    // Wait for the events to be loaded
-    await waitFor(() => {
-      expect(api.fetchEvents).toHaveBeenCalled();
-    });
+    // Verify that fetchEvents action was dispatched
+    expect(store.dispatch).toHaveBeenCalledWith(expect.any(Function));
   });
 
   test("shows loading state initially", () => {
+    // Update store to show loading state
+    store = mockStore({
+      events: {
+        events: [],
+        selectedEvent: null,
+        loading: true,
+        error: null,
+      },
+    });
+
     render(
-      <BrowserRouter>
-        <ThemeProvider>
-          <EventsProvider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <ThemeProvider>
             <EventsPage />
-          </EventsProvider>
-        </ThemeProvider>
-      </BrowserRouter>
+          </ThemeProvider>
+        </BrowserRouter>
+      </Provider>
     );
 
     // Check if loading indicator is shown
     expect(screen.getByRole("status")).toBeInTheDocument();
   });
 
-  // test("displays events after loading", async () => {
-  //   render(
-  //     <BrowserRouter>
-  //       <ThemeProvider>
-  //         <EventsProvider>
-  //           <EventsPage />
-  //         </EventsProvider>
-  //       </ThemeProvider>
-  //     </BrowserRouter>
-  //   );
-
-  //   // Wait for the events to be loaded
-  //   await waitFor(() => {
-  //     expect(api.fetchEvents).toHaveBeenCalled();
-  //   });
-
-  //   // Check if events grid and list are rendered with the correct number of events
-  //   await waitFor(() => {
-  //     expect(screen.getByTestId("mock-events-grid")).toHaveTextContent(
-  //       "Events Grid: 2 events"
-  //     );
-  //     expect(screen.getByTestId("mock-events-list")).toHaveTextContent(
-  //       "Events List: 2 events"
-  //     );
-  //   });
-  // });
-
-  test("handles API error", async () => {
-    // Mock API to throw an error
-    jest
-      .spyOn(api, "fetchEvents")
-      .mockRejectedValue(new Error("Failed to fetch events"));
+  xtest("displays events after loading", () => {
+    // Update store with events data
+    store = mockStore({
+      events: {
+        events: mockEvents,
+        selectedEvent: null,
+        loading: false,
+        error: null,
+      },
+    });
 
     render(
-      <BrowserRouter>
-        <ThemeProvider>
-          <EventsProvider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <ThemeProvider>
             <EventsPage />
-          </EventsProvider>
-        </ThemeProvider>
-      </BrowserRouter>
+          </ThemeProvider>
+        </BrowserRouter>
+      </Provider>
     );
 
-    // Wait for the error to be displayed
-    await waitFor(() => {
-      expect(screen.getByText("Failed to load events")).toBeInTheDocument();
-      expect(
-        screen.getByRole("button", { name: /try again/i })
-      ).toBeInTheDocument();
+    // Check if events grid and list are rendered with the correct number of events
+    expect(screen.getByTestId("mock-events-grid")).toHaveTextContent(
+      "Events Grid: 2 events"
+    );
+    expect(screen.getByTestId("mock-events-list")).toHaveTextContent(
+      "Events List: 2 events"
+    );
+  });
+
+  test("handles API error", () => {
+    // Update store to show error state
+    store = mockStore({
+      events: {
+        events: [],
+        selectedEvent: null,
+        loading: false,
+        error: "Failed to load events",
+      },
     });
+
+    render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <ThemeProvider>
+            <EventsPage />
+          </ThemeProvider>
+        </BrowserRouter>
+      </Provider>
+    );
+
+    // Check if error message is displayed
+    expect(screen.getByText("Failed to load events")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /try again/i })
+    ).toBeInTheDocument();
   });
 });

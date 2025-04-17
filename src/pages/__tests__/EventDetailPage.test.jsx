@@ -1,10 +1,11 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import configureStore from "redux-mock-store";
+import { thunk } from "redux-thunk";
 import EventDetailPage from "../../pages/EventDetailPage";
-import * as api from "../../services/api";
-
-// Mock the API
-jest.mock("../../services/api");
+import { ThemeProvider } from "../../context/theme-provider";
+// import { jest, beforeEach, describe, test, xtest, expect } from "@jest/globals";
 
 // Mock the components that are used in EventDetailPage
 jest.mock("../../components/header", () => {
@@ -21,7 +22,13 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => jest.fn(),
 }));
 
-describe("EventDetailPage", () => {
+// Create mock store
+const middlewares = [thunk];
+const mockStore = configureStore(middlewares);
+
+describe("EventDetailPage with Redux", () => {
+  let store;
+
   const mockEvent = {
     id: 1,
     type: "CREATED",
@@ -67,87 +74,140 @@ describe("EventDetailPage", () => {
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
-    // Mock the fetchEventById API call
-    jest.spyOn(api, "fetchEventById").mockResolvedValue(mockEvent);
+    // Initialize store with initial state
+    store = mockStore({
+      events: {
+        events: [],
+        selectedEvent: null,
+        loading: false,
+        error: null,
+      },
+    });
+
+    // Mock dispatch to track actions
+    store.dispatch = jest.fn().mockImplementation(() => Promise.resolve());
   });
 
-  //   test("renders loading state initially", () => {
-  //     render(
-  //       <BrowserRouter>
-  //         <Routes>
-  //           <Route path="*" element={<EventDetailPage />} />
-  //         </Routes>
-  //       </BrowserRouter>
-  //     );
-
-  //     // Check if loading indicator is shown
-  //     expect(screen.getByRole("status")).toBeInTheDocument();
-  //   });
-
-  //   test("displays event details after loading", async () => {
-  //     render(
-  //       <BrowserRouter>
-  //         <Routes>
-  //           <Route path="*" element={<EventDetailPage />} />
-  //         </Routes>
-  //       </BrowserRouter>
-  //     );
-
-  //     // Wait for the event to be loaded
-  //     await waitFor(() => {
-  //       expect(api.fetchEventById).toHaveBeenCalledWith("1");
-  //     });
-
-  //     // Check if event details are rendered
-  //     await waitFor(() => {
-  //       expect(screen.getByText("Musical night1")).toBeInTheDocument();
-  //       expect(
-  //         screen.getByText("IGNITE YOUR ENTREPRENEURIAL SPIRIT")
-  //       ).toBeInTheDocument();
-  //       expect(
-  //         screen.getByText(
-  //           "Small Business Expo is America's Largest Business to Business Trade Show."
-  //         )
-  //       ).toBeInTheDocument();
-  //       expect(screen.getByText("$100")).toBeInTheDocument();
-  //       expect(screen.getByText("150")).toBeInTheDocument();
-  //       expect(screen.getByText("pune")).toBeInTheDocument();
-  //     });
-  //   });
-
-  test("handles API error", async () => {
-    // Mock API to throw an error
-    jest
-      .spyOn(api, "fetchEventById")
-      .mockRejectedValue(new Error("Failed to fetch event"));
+  xtest("renders loading state initially", () => {
+    // Update store to show loading state
+    store = mockStore({
+      events: {
+        events: [],
+        selectedEvent: null,
+        loading: true,
+        error: null,
+      },
+    });
 
     render(
-      <BrowserRouter>
-        <Routes>
-          <Route path="*" element={<EventDetailPage />} />
-        </Routes>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <ThemeProvider>
+            <Routes>
+              <Route path="*" element={<EventDetailPage />} />
+            </Routes>
+          </ThemeProvider>
+        </BrowserRouter>
+      </Provider>
     );
 
-    // Wait for the error to be displayed
-    await waitFor(() => {
-      expect(
-        screen.getByText("Failed to load event details")
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole("button", { name: /go to events/i })
-      ).toBeInTheDocument();
-    });
+    // Check if loading indicator is shown
+    expect(screen.getByRole("status")).toBeInTheDocument();
+
+    // Verify that fetchEventById action was dispatched
+    expect(store.dispatch).toHaveBeenCalledWith(expect.any(Function));
   });
 
-  test("renders back button", async () => {
+  xtest("displays event details after loading", () => {
+    // Update store with event data
+    store = mockStore({
+      events: {
+        events: [],
+        selectedEvent: mockEvent,
+        loading: false,
+        error: null,
+      },
+    });
+
     render(
-      <BrowserRouter>
-        <Routes>
-          <Route path="*" element={<EventDetailPage />} />
-        </Routes>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <ThemeProvider>
+            <Routes>
+              <Route path="*" element={<EventDetailPage />} />
+            </Routes>
+          </ThemeProvider>
+        </BrowserRouter>
+      </Provider>
+    );
+
+    // Check if event details are rendered
+    expect(screen.getByText("Musical night1")).toBeInTheDocument();
+    expect(
+      screen.getByText("IGNITE YOUR ENTREPRENEURIAL SPIRIT")
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Small Business Expo is America's Largest Business to Business Trade Show."
+      )
+    ).toBeInTheDocument();
+    expect(screen.getByText("$100")).toBeInTheDocument();
+    expect(screen.getByText("150")).toBeInTheDocument();
+    expect(screen.getByText("pune")).toBeInTheDocument();
+  });
+
+  test("handles API error", () => {
+    // Update store to show error state
+    store = mockStore({
+      events: {
+        events: [],
+        selectedEvent: null,
+        loading: false,
+        error: "Failed to load event details",
+      },
+    });
+
+    render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <ThemeProvider>
+            <Routes>
+              <Route path="*" element={<EventDetailPage />} />
+            </Routes>
+          </ThemeProvider>
+        </BrowserRouter>
+      </Provider>
+    );
+
+    // Check if error message is displayed
+    expect(
+      screen.getByText("Failed to load event details")
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /go to events/i })
+    ).toBeInTheDocument();
+  });
+
+  test("renders back button", () => {
+    store = mockStore({
+      events: {
+        events: [],
+        selectedEvent: mockEvent,
+        loading: false,
+        error: null,
+      },
+    });
+
+    render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <ThemeProvider>
+            <Routes>
+              <Route path="*" element={<EventDetailPage />} />
+            </Routes>
+          </ThemeProvider>
+        </BrowserRouter>
+      </Provider>
     );
 
     // Check if back button is rendered
@@ -156,22 +216,33 @@ describe("EventDetailPage", () => {
     ).toBeInTheDocument();
   });
 
-  //   test("renders event not found when event is null", async () => {
-  //     // Mock API to return null
-  //     jest.spyOn(api, "fetchEventById").mockResolvedValue(null as any)
+  test("renders event not found when event is null", () => {
+    // Update store with null event
+    store = mockStore({
+      events: {
+        events: [],
+        selectedEvent: null,
+        loading: false,
+        error: null,
+      },
+    });
 
-  //     render(
-  //       <BrowserRouter>
-  //         <Routes>
-  //           <Route path="*" element={<EventDetailPage />} />
-  //         </Routes>
-  //       </BrowserRouter>,
-  //     )
+    render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <ThemeProvider>
+            <Routes>
+              <Route path="*" element={<EventDetailPage />} />
+            </Routes>
+          </ThemeProvider>
+        </BrowserRouter>
+      </Provider>
+    );
 
-  //     // Wait for the not found message to be displayed
-  //     await waitFor(() => {
-  //       expect(screen.getByText("Event not found")).toBeInTheDocument()
-  //       expect(screen.getByRole("button", { name: /go to events/i })).toBeInTheDocument()
-  //     })
-  //   })
+    // Check if not found message is displayed
+    expect(screen.getByText("Event not found")).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /go to events/i })
+    ).toBeInTheDocument();
+  });
 });
