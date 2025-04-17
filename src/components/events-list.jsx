@@ -23,14 +23,14 @@ export default function EventsList({ events }) {
       return dateStr;
     }
   };
-  console.log("first", events);
+
   return (
     <div className="space-y-4">
       {events.map((event) => {
         const eventItem = event.payload.items[0];
         return (
           <Link to={`/events/${event.id}`} key={event.id} className="block">
-            <div className="flex flex-col sm:flex-row gap-4 p-4 border rounded-lg hover:shadow-md transition-shadow">
+            <div className="flex flex-col sm:flex-row gap-4 p-4 border border-border rounded-lg hover:shadow-md transition-shadow bg-card">
               <div className="relative h-40 sm:h-32 sm:w-48 rounded-md overflow-hidden">
                 <img
                   src={event.payload.image || "/placeholder.svg"}

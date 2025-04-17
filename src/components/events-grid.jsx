@@ -31,7 +31,7 @@ export default function EventsGrid({ events }) {
         const eventItem = event.payload.items[0];
         return (
           <Link to={`/events/${event.id}`} key={event.id}>
-            <Card className="h-full overflow-hidden hover:shadow-md transition-shadow">
+            <Card className="h-full overflow-hidden hover:shadow-md transition-shadow border border-border">
               <div className="relative h-48 w-full">
                 <img
                   src={event.payload.image || "/placeholder.svg"}

@@ -123,7 +123,7 @@ export default function EventDetailPage() {
               </div>
 
               <div className="space-y-6">
-                <Card>
+                <Card className="border border-border">
                   <CardContent className="p-6 space-y-4">
                     <div className="space-y-2">
                       <h3 className="font-semibold">Date and time</h3>
@@ -168,7 +168,7 @@ export default function EventDetailPage() {
                   </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="border border-border">
                   <CardContent className="p-6 space-y-4">
                     <h3 className="font-semibold">Contact Information</h3>
                     <div className="space-y-2">
