@@ -15,18 +15,20 @@ import {
 } from "../components/ui/tabs";
 import { LayoutGrid, List } from "lucide-react";
 import ErrorBoundary from "../components/error-boundary";
-import { useEventsContext } from "../context/events-context";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchEvents } from "../store/slices/eventsSlice";
 
 function EventsContent() {
-  const { events, loading, error, fetchEvents } = useEventsContext();
+  const dispatch = useDispatch();
+  const { events, loading, error } = useSelector((state) => state.events);
   const [viewMode, setViewMode] = useState("list"); // ("list" , "grid");
   const [searchParams] = useSearchParams();
   const city = searchParams.get("city") || "all";
   const query = searchParams.get("q") || "";
 
   useEffect(() => {
-    fetchEvents(city, query);
-  }, [fetchEvents, city, query]);
+    dispatch(fetchEvents({ city, query }));
+  }, [dispatch, city, query]);
 
   return (
     <div className="flex flex-col gap-6">

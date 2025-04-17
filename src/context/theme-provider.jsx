@@ -5,7 +5,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const initialState = {
   theme: "system",
-  colorTheme: "blue",
+  colorTheme: "purple",
   setTheme: () => null,
   setColorTheme: () => null,
 };
@@ -15,7 +15,7 @@ const ThemeProviderContext = createContext(initialState);
 export function ThemeProvider({
   children,
   defaultTheme = "system",
-  defaultColorTheme = "blue",
+  defaultColorTheme = "purple",
   storageKey = "vite-ui-theme",
   colorStorageKey = "vite-ui-color-theme",
   ...props

@@ -34,6 +34,8 @@ import { Calendar as CalendarComponent } from "../components/ui/calendar";
 import Header from "../components/header";
 import ErrorBoundary from "../components/error-boundary";
 import { addEvent } from "../services/api";
+import { useDispatch } from "react-redux";
+import { fetchEvents } from "../store/slices/eventsSlice";
 import { cities } from "../data/cities";
 
 const formSchema = z.object({
@@ -69,6 +71,7 @@ const formSchema = z.object({
 
 export default function AddEventPage() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm({
@@ -142,6 +145,8 @@ export default function AddEventPage() {
       };
 
       await addEvent(eventData);
+      // Refresh events list after adding a new event
+      dispatch(fetchEvents({}));
       navigate("/events");
     } catch (error) {
       console.error("Failed to add event:", error);

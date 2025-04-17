@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { parse, format } from "date-fns";
 import {
@@ -17,36 +17,32 @@ import { Badge } from "../components/ui/badge";
 import { Card, CardContent } from "../components/ui/card";
 import Header from "../components/header";
 import ErrorBoundary from "../components/error-boundary";
-import { fetchEventById } from "../services/api";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchEventById,
+  clearSelectedEvent,
+} from "../store/slices/eventsSlice";
 
 export default function EventDetailPage() {
+  const dispatch = useDispatch();
+  const {
+    selectedEvent: event,
+    loading,
+    error,
+  } = useSelector((state) => state.events);
   const { id } = useParams();
   const navigate = useNavigate();
-  const [event, setEvent] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getEvent = async () => {
-      try {
-        setLoading(true);
-        if (id) {
-          const eventData = await fetchEventById(id);
-          setEvent(eventData);
-          setError(null);
-        }
-      } catch (err) {
-        setError("Failed to load event details");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     if (id) {
-      getEvent();
+      dispatch(fetchEventById(id));
     }
-  }, [id]);
+
+    // Cleanup on unmount
+    return () => {
+      dispatch(clearSelectedEvent());
+    };
+  }, [dispatch, id]);
 
   const handleGoBack = () => {
     navigate(-1);
