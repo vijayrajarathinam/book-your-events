@@ -21,5 +21,10 @@ export default {
       statements: 50,
     },
   },
-  coveragePathIgnorePatterns: ["node_modules", "<rootDir>/src/components/ui"],
+  coveragePathIgnorePatterns: [
+    "node_modules",
+    "<rootDir>/src/components/ui",
+    // "<rootDir>/src/services",
+    // "<rootDir>/src/store",
+  ],
 };

@@ -4,7 +4,7 @@ import {
   fetchEventById as fetchEventByIdApi,
 } from "../../services/api";
 
-const initialState = {
+export const initialState = {
   events: [],
   selectedEvent: null,
   loading: false,
