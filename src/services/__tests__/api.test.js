@@ -4,7 +4,7 @@ import * as api from "../../services/api";
 const mockFetch = jest.fn();
 global.fetch = mockFetch;
 
-xdescribe("API Service", () => {
+describe("API Service", () => {
   beforeEach(() => {
     // Clear all mocks before each test
     jest.clearAllMocks();
@@ -26,7 +26,7 @@ xdescribe("API Service", () => {
 
       const result = await api.fetchEvents();
 
-      expect(mockFetch).toHaveBeenCalledWith("http://localhost:3001/events");
+      expect(mockFetch).toHaveBeenCalledWith("http://localhost:3002/events");
       expect(result).toEqual(mockEvents);
     });
 
@@ -40,7 +40,7 @@ xdescribe("API Service", () => {
       const result = await api.fetchEvents("pune");
 
       expect(mockFetch).toHaveBeenCalledWith(
-        "http://localhost:3001/events?city=pune"
+        "http://localhost:3002/events?city=pune"
       );
       expect(result).toEqual(mockEvents);
     });
@@ -55,7 +55,7 @@ xdescribe("API Service", () => {
       const result = await api.fetchEvents(undefined, "concert");
 
       expect(mockFetch).toHaveBeenCalledWith(
-        "http://localhost:3001/events?q=concert"
+        "http://localhost:3002/events?&q=concert"
       );
       expect(result).toEqual(mockEvents);
     });
@@ -70,7 +70,7 @@ xdescribe("API Service", () => {
       const result = await api.fetchEvents("pune", "concert");
 
       expect(mockFetch).toHaveBeenCalledWith(
-        "http://localhost:3001/events?city=pune&q=concert"
+        "http://localhost:3002/events?city=pune&q=concert"
       );
       expect(result).toEqual(mockEvents);
     });
@@ -103,7 +103,7 @@ xdescribe("API Service", () => {
 
       const result = await api.fetchEventById("1");
 
-      expect(mockFetch).toHaveBeenCalledWith("http://localhost:3001/events/1");
+      expect(mockFetch).toHaveBeenCalledWith("http://localhost:3002/events/1");
       expect(result).toEqual(mockEvent);
     });
 
@@ -148,7 +148,7 @@ xdescribe("API Service", () => {
 
       const result = await api.addEvent(newEvent);
 
-      expect(mockFetch).toHaveBeenCalledWith("http://localhost:3001/events", {
+      expect(mockFetch).toHaveBeenCalledWith("http://localhost:3002/events", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -221,7 +221,7 @@ xdescribe("API Service", () => {
 
       const result = await api.updateEvent("1", eventUpdate);
 
-      expect(mockFetch).toHaveBeenCalledWith("http://localhost:3001/events/1", {
+      expect(mockFetch).toHaveBeenCalledWith("http://localhost:3002/events/1", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -279,7 +279,7 @@ xdescribe("API Service", () => {
 
       await api.deleteEvent("1");
 
-      expect(mockFetch).toHaveBeenCalledWith("http://localhost:3001/events/1", {
+      expect(mockFetch).toHaveBeenCalledWith("http://localhost:3002/events/1", {
         method: "DELETE",
       });
     });
