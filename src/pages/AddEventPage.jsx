@@ -89,7 +89,7 @@ export default function AddEventPage() {
       sell_price: "",
       orig_price: "",
       image:
-        "https://corefestival.com/uploads/resized/uploads/256610/220528-132053-CORE22-HL-_HIL2573-LR_2022-10-27-121950_yhmp_4092684b658d2e7b7a3f764f5c1c951a.webp",
+        "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
     },
   });
 
@@ -102,7 +102,7 @@ export default function AddEventPage() {
 
       // Create event object with the new structure
       const eventData = {
-        id: Date.now(),
+        id: Date.now().toString(),
         type: "CREATED",
         owner_id: "123663",
         city: data.city,
@@ -189,7 +189,7 @@ export default function AddEventPage() {
                         defaultValue={field.value}
                       >
                         <FormControl>
-                          <SelectTrigger>
+                          <SelectTrigger className="w-full">
                             <SelectValue placeholder="Select a city" />
                           </SelectTrigger>
                         </FormControl>

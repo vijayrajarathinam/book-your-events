@@ -32,13 +32,6 @@ function EventsContent() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-2">
-        <h1 className="text-3xl font-bold tracking-tight">Events</h1>
-        <p className="text-muted-foreground">
-          Discover amazing events happening near you
-        </p>
-      </div>
-
       <EventsFilter />
 
       <div className="flex flex-col justify-between items-center">
@@ -48,9 +41,9 @@ function EventsContent() {
         <Tabs
           defaultValue={viewMode}
           onValueChange={(value) => setViewMode(value)}
-          className="w-auto"
+          className="w-auto "
         >
-          <TabsList className="grid w-[160px] grid-cols-2">
+          <TabsList className="hidden md:grid w-[160px] grid-cols-2">
             <TabsTrigger value="grid" className="flex items-center gap-2">
               <LayoutGrid className="h-4 w-4" />
               <span>Grid</span>

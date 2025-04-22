@@ -45,7 +45,7 @@ export default function EventsFilter() {
           City
         </label>
         <Select value={city} onValueChange={setCity}>
-          <SelectTrigger id="city">
+          <SelectTrigger id="city" className="w-full">
             <SelectValue placeholder="Select city" />
           </SelectTrigger>
           <SelectContent>

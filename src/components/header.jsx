@@ -32,7 +32,7 @@ export default function Header() {
           </Link>
         </div>
 
-        <div className="hidden md:flex md:flex-1 md:items-center md:justify-between">
+        <div className="mx-auto hidden md:flex md:flex-1 md:items-center md:justify-between">
           <nav className="flex items-center space-x-6">
             {routes.map((route) => (
               <Link
@@ -48,12 +48,6 @@ export default function Header() {
             ))}
           </nav>
           <div className="flex items-center space-x-4">
-            <Link to="/add-event">
-              <Button>
-                <Plus className="mr-2 h-4 w-4" />
-                Add Event
-              </Button>
-            </Link>
             <ThemeToggle />
           </div>
         </div>
@@ -82,12 +76,6 @@ export default function Header() {
                     {route.label}
                   </Link>
                 ))}
-                <Link to="/add-event" onClick={() => setIsOpen(false)}>
-                  <Button className="w-full mt-2">
-                    <Plus className="mr-2 h-4 w-4" />
-                    Add Event
-                  </Button>
-                </Link>
               </nav>
             </SheetContent>
           </Sheet>
