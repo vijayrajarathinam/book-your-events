@@ -50,7 +50,16 @@ const eventsSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchEvents.fulfilled, (state, action) => {
-        state.events = action.payload;
+        const sortedEvents = [...action.payload].sort((a, b) => {
+          // Parse dates (format: DD-MM-YYYY)
+          const dateA = a.payload.event_date.split("-").reverse().join("-");
+          const dateB = b.payload.event_date.split("-").reverse().join("-");
+
+          // compare date newest first
+          return new Date(dateB).getTime() - new Date(dateA).getTime();
+        });
+
+        state.events = sortedEvents;
         state.loading = false;
       })
       .addCase(fetchEvents.rejected, (state, action) => {

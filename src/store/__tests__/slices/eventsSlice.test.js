@@ -3,11 +3,11 @@ import eventsReducer, {
   fetchEvents,
   fetchEventById,
   clearSelectedEvent,
-} from "../../store/slices/eventsSlice";
-import * as api from "../../services/api";
+} from "../../../store/slices/eventsSlice";
+import * as api from "../../../services/api";
 
 // Mock the API
-jest.mock("../../services/api");
+jest.mock("../../../services/api");
 
 describe("eventsSlice", () => {
   let store;

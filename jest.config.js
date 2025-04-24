@@ -15,16 +15,11 @@ export default {
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
   coverageThreshold: {
     global: {
-      branches: 20,
-      functions: 30,
-      lines: 50,
-      statements: 50,
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80,
     },
   },
-  coveragePathIgnorePatterns: [
-    "node_modules",
-    "<rootDir>/src/components/ui",
-    // "<rootDir>/src/services",
-    // "<rootDir>/src/store",
-  ],
+  coveragePathIgnorePatterns: ["node_modules", "<rootDir>/src/components/ui"],
 };
